@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="877.0" style="-fx-background-color: #E1ECE6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="Export" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="877.0" style="-fx-background-color: #E1ECE6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="91.0" prefWidth="518.0" BorderPane.alignment="CENTER">
          <children>
@@ -31,42 +31,48 @@
    <center>
       <AnchorPane prefHeight="133.0" prefWidth="518.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="26.0" layoutY="-21.0" prefHeight="193.0" prefWidth="466.0" style="-fx-background-color: #BFDEC6; -fx-background-radius: 20;">
+            <Pane layoutX="26.0" layoutY="-21.0" prefHeight="230.0" prefWidth="466.0" style="-fx-background-color: #BFDEC6; -fx-background-radius: 20;">
                <children>
-                  <Label layoutX="18.0" layoutY="57.0" text="Receiver">
+                  <Label layoutX="18.0" layoutY="57.0" text="Sender">
                      <font>
                         <Font name="HarmonyOS Sans SC" size="15.0" />
                      </font>
                   </Label>
                </children></Pane>
-            <Label layoutX="45.0" text="Sender">
+            <Label layoutX="45.0" text="Date">
                <font>
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="72.0" text="Product Name">
+            <Label layoutX="45.0" layoutY="72.0" text="Receiver">
                <font>
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="110.0" text="Quantity (max 5000)">
+            <Label layoutX="45.0" layoutY="151.0" text="Quantity (max 5000)">
                <font>
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" />
-            <TextField layoutX="217.0" layoutY="69.0" prefHeight="15.0" prefWidth="248.0" />
-            <Slider layoutX="217.0" layoutY="112.0" majorTickUnit="2500.0" max="5000.0" minorTickCount="1" showTickLabels="true" />
-            <TextField layoutX="217.0" layoutY="31.0" prefHeight="15.0" prefWidth="248.0" />
-            <Button layoutX="313.0" layoutY="186.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Add Product to Export" textFill="WHITE" />
+            <TextField fx:id="exportInputDate" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" />
+            <TextField fx:id="exportInputReceiver" layoutX="217.0" layoutY="69.0" prefHeight="15.0" prefWidth="248.0" />
+            <Slider fx:id="exportSliderQuantity" layoutX="217.0" layoutY="153.0" majorTickUnit="2500.0" max="5000.0" minorTickCount="1" showTickLabels="true" />
+            <TextField fx:id="exportInputSender" layoutX="217.0" layoutY="31.0" prefHeight="15.0" prefWidth="248.0" />
+            <Button fx:id="addProductExport" layoutX="313.0" layoutY="217.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Add Product to Export" textFill="WHITE" />
+            <Label layoutX="45.0" layoutY="110.0" text="Product Name">
+               <font>
+                  <Font name="HarmonyOS Sans SC" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="exportInputProductName" layoutX="217.0" layoutY="107.0" prefHeight="15.0" prefWidth="248.0" />
          </children>
       </AnchorPane>
    </center>
    <bottom>
       <AnchorPane prefHeight="57.0" prefWidth="878.0" style="-fx-background-color: #83AF97;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="715.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Export" textFill="WHITE" />
-            <Button layoutX="786.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Cancel" textFill="WHITE" />
+            <Button fx:id="exportFSubmit" layoutX="715.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Export" textFill="WHITE" />
+            <Button fx:id="exportCancel" layoutX="786.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Cancel" textFill="WHITE" />
          </children>
       </AnchorPane>
    </bottom>
@@ -76,7 +82,7 @@
             <TableView layoutX="-3.0" layoutY="-27.0" prefHeight="192.0" prefWidth="314.0">
               <columns>
                 <TableColumn prefWidth="122.39995729923248" text="Product Name" />
-                  <TableColumn prefWidth="75.0" text="Perishable" />
+                  <TableColumn fx:id="productList" prefWidth="75.0" text="Perishable" />
                 <TableColumn prefWidth="68.0" text="In Stock" />
               </columns>
             </TableView>
@@ -85,15 +91,15 @@
                   <Font name="HarmonyOS Sans SC Bold" size="20.0" />
                </font>
             </Label>
-            <TableView layoutX="-3.0" layoutY="224.0" prefHeight="192.0" prefWidth="314.0">
+            <TableView fx:id="productExportList" layoutX="-3.0" layoutY="224.0" prefHeight="192.0" prefWidth="314.0">
                <columns>
                   <TableColumn prefWidth="122.39995729923248" text="Product Name" />
                   <TableColumn prefWidth="75.0" text="Perishable" />
                   <TableColumn prefWidth="68.0" text="In Stock" />
                </columns>
             </TableView>
-            <Button layoutX="241.0" layoutY="426.0" mnemonicParsing="false" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Remove" textFill="WHITE" />
-            <Button layoutX="169.0" layoutY="426.0" mnemonicParsing="false" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Modify" textFill="WHITE" />
+            <Button fx:id="exportRemove" layoutX="241.0" layoutY="426.0" mnemonicParsing="false" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Remove" textFill="WHITE" />
+            <Button fx:id="exportModify" layoutX="169.0" layoutY="426.0" mnemonicParsing="false" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Modify" textFill="WHITE" />
          </children>
       </AnchorPane>
    </right>

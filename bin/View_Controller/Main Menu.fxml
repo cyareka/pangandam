@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="649.0" prefWidth="910.0" style="-fx-background-color: #83AF97;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.MainScreenController">
+   <children>
+      <Pane layoutX="27.0" layoutY="26.0" prefHeight="598.0" prefWidth="855.0" style="-fx-background-radius: 30; -fx-background-color: #E1ECE6;">
+         <children>
+            <Label fx:id="MainLabel" layoutX="151.0" layoutY="30.0" prefHeight="38.0" prefWidth="597.0" text="Disaster Inventory Management System" textAlignment="CENTER">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="exitProgramButton" layoutX="777.0" layoutY="549.0" mnemonicParsing="false" onAction="#exitProgramHandler" style="-fx-background-color: #204A38; -fx-font-weight: bold; -fx-background-radius: 10;" text="Exit" textFill="WHITE" />
+         </children>
+      </Pane>
+      <AnchorPane layoutX="56.0" layoutY="125.0" prefHeight="431.0" prefWidth="386.0" style="-fx-background-radius: 30; -fx-background-color: #BFDEC6;">
+         <children>
+            <Label layoutX="22.0" layoutY="17.0" prefHeight="23.0" prefWidth="91.0" text="Products">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="searchProductButton" layoutX="295.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="HarmonyOS Sans SC" size="14.0" />
+               </font>
+            </Button>
+            <TableView fx:id="productTableView" layoutX="21.0" layoutY="56.0" prefHeight="310.0" prefWidth="338.0" style="-fx-background-radius: 20;">
+               <columns>
+                  <TableColumn fx:id="productColumn" prefWidth="226.40000915527344" text="Product Name" />
+                  <TableColumn fx:id="inStockColumn" minWidth="0.0" prefWidth="112.0" text="In Stock" />
+               </columns>
+            </TableView>
+            <TextField fx:id="searchProductInput" layoutX="123.0" layoutY="14.0" onAction="#inputSearchHandler" prefHeight="28.0" prefWidth="162.0" promptText="Input product name" style="-fx-background-radius: 10;" />
+            <Button fx:id="importItemButton" layoutX="22.0" layoutY="382.0" mnemonicParsing="false" onAction="#importItemHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Import" textFill="WHITE" />
+            <Button fx:id="modifyItemButton" layoutX="230.0" layoutY="382.0" mnemonicParsing="false" onAction="#modifyItemHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Modify" textFill="WHITE" />
+            <Button fx:id="deleteItemButton" layoutX="302.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteItemHandler" style="-fx-background-color: #204A38; -fx-font-weight: bold; -fx-background-radius: 10;" text="Delete" textFill="WHITE" />
+            <Button fx:id="exportItemButton" layoutX="95.0" layoutY="382.0" mnemonicParsing="false" onAction="#exportItemHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Export" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="473.0" layoutY="127.0" prefHeight="431.0" prefWidth="382.0" style="-fx-background-color: #BFDEC6; -fx-background-radius: 30;">
+         <children>
+            <Label layoutX="22.0" layoutY="18.0" prefHeight="23.0" prefWidth="182.0" text="Proof of Transaction" textFill="#494e40">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="proofOfTransaction" layoutX="22.0" layoutY="56.0" prefHeight="310.0" prefWidth="338.0" />
+            <Button fx:id="saveReceiptButton" layoutX="221.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveReceiptHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Save" textFill="WHITE" />
+            <Button fx:id="saveUpdateReceipt" layoutX="275.0" layoutY="382.0" mnemonicParsing="false" onAction="#saveUpdateHandler" style="-fx-background-color: #204A38; -fx-font-weight: bold; -fx-background-radius: 10;" text="Save &amp; Exit" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
