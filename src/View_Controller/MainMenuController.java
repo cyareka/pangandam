@@ -1,8 +1,13 @@
 package View_Controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import ProductModel.Inventory;
 import ProductModel.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -10,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class MainMenuController {
+public class MainMenuController implements Initializable {
 
     @FXML
     private Label MainLabel;
@@ -28,13 +33,13 @@ public class MainMenuController {
     private Button importItemButton;
 
     @FXML
-    private TableColumn<Product, Integer> inStockColumn;
+    private TableColumn<?, ?> inStockColumn;
 
     @FXML
     private Button modifyItemButton;
 
     @FXML
-    private TableColumn<Product, String> productColumn;
+    private TableColumn<?, ?> productColumn;
 
     @FXML
     private TableView<?> productTableView;
@@ -55,22 +60,22 @@ public class MainMenuController {
     private TextField searchProductInput;
 
     @FXML
-    void deleteItemHandler(ActionEvent event) {
+    void deleteItemBTNHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void exitProgramHandler(ActionEvent event) {
+    void exitProgramBTNHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void exportItemHandler(ActionEvent event) {
+    void exportItemBTNHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void importItemHandler(ActionEvent event) {
+    void importItemBTNHandler(ActionEvent event) {
 
     }
 
@@ -80,23 +85,34 @@ public class MainMenuController {
     }
 
     @FXML
-    void modifyItemHandler(ActionEvent event) {
+    void modifyItemBTNHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void saveReceiptHandler(ActionEvent event) {
+    void saveReceiptBTNHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void saveUpdateHandler(ActionEvent event) {
+    void saveUpdateBTNHandler(ActionEvent event) {
 
     }
 
     @FXML
-    void searchHandler(ActionEvent event) {
+    void searchProductBTNHandler(ActionEvent event) {
+        String searchProduct = searchProductInput.getText();
+        
+        for (Product productSearched : Inventory.getAllProducts()) {
+            if (productSearched.getNameProduct().equals(searchProduct));
 
+            Product prod = new Product();
+        }
     }
 
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        
+        
+    }
 }
