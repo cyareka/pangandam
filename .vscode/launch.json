@@ -12,11 +12,11 @@
       },
       {
          "type": "java",
-         "name": "Launch App",
+         "name": "Launch Main",
          "request": "launch",
-         "mainClass": "App",
-         "projectName": "App_de8b825f",
+         "mainClass": "Main.Main",
+         "projectName": "pangandam_b72f93a4",
          "vmArgs": "--module-path \"D:/HUAWEI-PC/Documents/Downloads/Extensions/openjfx-18.0.1_windows-x64_bin-sdk/javafx-sdk-18.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
-      }
+      },
    ]
 }

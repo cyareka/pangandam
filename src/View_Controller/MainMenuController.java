@@ -1,19 +1,28 @@
 package View_Controller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
-
 import ProductModel.Inventory;
 import ProductModel.Product;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class MainMenuController implements Initializable {
 
@@ -42,7 +51,7 @@ public class MainMenuController implements Initializable {
     private TableColumn<?, ?> productColumn;
 
     @FXML
-    private TableView<?> productTableView;
+    private TableView<Product> productTableView;
 
     @FXML
     private TextArea proofOfTransaction;
@@ -66,7 +75,13 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void exitProgramBTNHandler(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the program?");
+        alert.setTitle("Exit Program");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            Platform.exit();
+        }
     }
 
     @FXML
@@ -75,8 +90,17 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void importItemBTNHandler(ActionEvent event) {
-
+    void importItemBTNHandler(ActionEvent event) throws IOException {
+        Parent root;
+        Stage stage = (Stage) importItemButton.getScene().getWindow();
+      
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("ImportSelection.fxml"));
+      
+        root = loader.load();
+        
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -91,11 +115,11 @@ public class MainMenuController implements Initializable {
 
     @FXML
     void saveReceiptBTNHandler(ActionEvent event) {
-
+        
     }
 
     @FXML
-    void saveUpdateBTNHandler(ActionEvent event) {
+    void saveExitBTNHandler(ActionEvent event) {
 
     }
 
@@ -105,14 +129,14 @@ public class MainMenuController implements Initializable {
         
         for (Product productSearched : Inventory.getAllProducts()) {
             if (productSearched.getNameProduct().equals(searchProduct));
-
-            Product prod = new Product();
         }
     }
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        
-        
+    public void initialize(URL url, ResourceBundle rb) {
+        productTableView.setItems(Inventory.getAllProducts());
+
+        productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        inStockColumn.setCellValueFactory(new PropertyValueFactory<>("in stock"));
     }
 }
