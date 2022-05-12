@@ -85,8 +85,17 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void exportItemBTNHandler(ActionEvent event) {
-
+    void exportItemBTNHandler(ActionEvent event) throws IOException {
+        Parent root;
+        Stage stage = (Stage) importItemButton.getScene().getWindow();
+      
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("ExportProducts.fxml"));
+      
+        root = loader.load();
+        
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -103,25 +112,23 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void inputSearchHandler(ActionEvent event) {
-
-    }
-
+    
     @FXML
     void modifyItemBTNHandler(ActionEvent event) {
-
     }
-
+    
     @FXML
     void saveReceiptBTNHandler(ActionEvent event) {
         
     }
-
+    
     @FXML
     void saveExitBTNHandler(ActionEvent event) {
-
+        
     }
+    
+    @FXML
+    void inputSearchHandler(ActionEvent event) {}
 
     @FXML
     void searchProductBTNHandler(ActionEvent event) {

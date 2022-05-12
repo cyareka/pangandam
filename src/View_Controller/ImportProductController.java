@@ -2,15 +2,21 @@ package View_Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class ImportProductController implements Initializable {
+
+    ObservableList<String> productCategory = FXCollections.observableArrayList("Food","Survival Kit");
 
     @FXML
     private AnchorPane Import;
@@ -22,7 +28,13 @@ public class ImportProductController implements Initializable {
     private Button importCancelBTN;
 
     @FXML
-    private CheckBox importNoBTN;
+    private ComboBox<String> importCategoryBTN;
+
+    @FXML
+    private CheckBox importNoFlamBTN;
+
+    @FXML
+    private CheckBox importNoPeriBTN;
 
     @FXML
     private TextField importOrgNameInput;
@@ -34,7 +46,10 @@ public class ImportProductController implements Initializable {
     private TextField importQuantityInput;
 
     @FXML
-    private CheckBox importYesBTN;
+    private CheckBox importYesFlamBTN;
+
+    @FXML
+    private CheckBox importYesPeriBTN;
 
     @FXML
     void importAddProductBTNHandler(ActionEvent event) {
@@ -46,10 +61,13 @@ public class ImportProductController implements Initializable {
 
     }
 
+    @FXML
+    void importCategoryBTNHandler(ActionEvent event) {
+        importCategoryBTN.setItems(productCategory);
+    }
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-        
+    public void initialize(URL url, ResourceBundle rb) {   
     }
 
 }
