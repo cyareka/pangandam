@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="518.0" style="-fx-background-color: #E1ECE6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="518.0" style="-fx-background-color: #E1ECE6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.Modify_Controller.ModifyProductController">
    <top>
       <AnchorPane fx:id="Import" prefHeight="91.0" prefWidth="518.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="34.0" layoutY="26.0" text="Import Product">
+            <Label layoutX="34.0" layoutY="26.0" text="Modify Product">
                <font>
                   <Font name="HarmonyOS Sans SC Bold" size="20.0" />
                </font>
@@ -27,14 +26,14 @@
          <children>
             <Pane layoutX="27.0" layoutY="-19.0" prefHeight="244.0" prefWidth="466.0" style="-fx-background-color: #BFDEC6; -fx-background-radius: 20;">
                <children>
-                  <TextField fx:id="importQuantityInput" layoutX="189.0" layoutY="91.0" prefHeight="30.0" prefWidth="103.0" promptText="Max 5000" />
+                  <TextField fx:id="modifyQuantityInput" layoutX="189.0" layoutY="91.0" prefHeight="30.0" prefWidth="103.0" promptText="Max 5000" />
                   <Label layoutX="20.0" layoutY="205.0" text="Flammable">
                      <font>
                         <Font name="HarmonyOS Sans SC" size="15.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="importYesFlamBTN" layoutX="191.0" layoutY="202.0" mnemonicParsing="false" text="Yes" />
-                  <CheckBox fx:id="importNoFlamBTN" layoutX="248.0" layoutY="203.0" mnemonicParsing="false" text="No" />
+                  <CheckBox fx:id="modifyYesFlamBTN" layoutX="191.0" layoutY="202.0" mnemonicParsing="false" text="Yes" />
+                  <CheckBox fx:id="modifyNoFlamBTN" layoutX="248.0" layoutY="203.0" mnemonicParsing="false" text="No" />
                   <Label layoutX="20.0" layoutY="168.0" text="Perishable">
                      <font>
                         <Font name="HarmonyOS Sans SC" size="15.0" />
@@ -45,8 +44,9 @@
                         <Font name="HarmonyOS Sans SC" size="15.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="importYesPeriBTN" layoutX="191.0" layoutY="166.0" mnemonicParsing="false" text="Yes" />
-                  <ComboBox fx:id="importCategoryBTN" editable="true" layoutX="189.0" layoutY="127.0" onAction="#importCategoryBTNHandler" prefWidth="150.0" promptText="Select a category" />
+                  <CheckBox fx:id="modifyYesPeriBTN" layoutX="191.0" layoutY="166.0" mnemonicParsing="false" text="Yes" />
+                  <CheckBox fx:id="modifySKBTN" layoutX="266.0" layoutY="132.0" mnemonicParsing="false" text="Survival Kit" />
+                  <CheckBox fx:id="modifyFoodsBTN" layoutX="191.0" layoutY="132.0" mnemonicParsing="false" text="Foods" />
                </children></Pane>
             <Label layoutX="45.0" text="Organization Name">
                <font>
@@ -63,16 +63,16 @@
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="importOrgNameInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" promptText="Input organization name" />
-            <TextField fx:id="importProductNameInput" layoutX="217.0" layoutY="34.0" prefHeight="15.0" prefWidth="248.0" promptText="Input product name" />
-            <CheckBox fx:id="importNoPeriBTN" layoutX="276.0" layoutY="147.0" mnemonicParsing="false" text="No" />
+            <TextField fx:id="modifyOrgNameInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" promptText="Modify organization name" />
+            <TextField fx:id="importProductNameInput" layoutX="217.0" layoutY="34.0" prefHeight="15.0" prefWidth="248.0" promptText="Modify product name" />
+            <CheckBox fx:id="modifyNoPeriBTN" layoutX="276.0" layoutY="147.0" mnemonicParsing="false" text="No" />
          </children>
       </AnchorPane>
    </center>
    <bottom>
       <AnchorPane prefHeight="71.0" prefWidth="518.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="importAddProductBTN" layoutX="372.0" layoutY="18.0" mnemonicParsing="false" onAction="#importAddProductBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Add" textFill="WHITE" />
+            <Button fx:id="modifyProductBTN" layoutX="357.0" layoutY="18.0" mnemonicParsing="false" onAction="#modifyProductBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Modify" textFill="WHITE" />
             <Button fx:id="importCancelBTN" layoutX="426.0" layoutY="18.0" mnemonicParsing="false" onAction="#importCancelBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Cancel" textFill="WHITE" />
          </children>
       </AnchorPane>

@@ -1,4 +1,4 @@
-package View_Controller;
+package View_Controller.Import_Controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ImportSelection implements Initializable {
+public class ImportSelectionController implements Initializable {
 
     @FXML
     private AnchorPane ImportSelect;

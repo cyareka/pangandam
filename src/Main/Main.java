@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -16,6 +17,7 @@ public class Main extends Application {
     
             Scene scene = new Scene(root);
         
+            stage.getIcons().add(new Image("/Icons/icon.png"));
             stage.setTitle("Disaster Inventory Management System");
             stage.setScene(scene);
             stage.show();

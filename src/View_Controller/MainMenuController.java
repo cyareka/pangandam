@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 import ProductModel.Inventory;
 import ProductModel.Product;
 import javafx.application.Platform;
@@ -19,7 +20,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -42,25 +42,22 @@ public class MainMenuController implements Initializable {
     private Button importItemButton;
 
     @FXML
-    private TableColumn<?, ?> inStockColumn;
+    private TableColumn<Product, String> inStockColumn;
 
     @FXML
     private Button modifyItemButton;
 
     @FXML
-    private TableColumn<?, ?> productColumn;
+    private TableColumn<Product, String> productColumn;
+
+    @FXML
+    private TableColumn<Product, String> productExpColumn;
 
     @FXML
     private TableView<Product> productTableView;
 
     @FXML
-    private TextArea proofOfTransaction;
-
-    @FXML
-    private Button saveReceiptButton;
-
-    @FXML
-    private Button saveUpdateReceipt;
+    private TableView<Product> proofOfTransaction;
 
     @FXML
     private Button searchProductButton;
@@ -69,10 +66,19 @@ public class MainMenuController implements Initializable {
     private TextField searchProductInput;
 
     @FXML
-    void deleteItemBTNHandler(ActionEvent event) {
+    private TableColumn<Product, String> toExportColumn;
 
+    // Delete Product
+    @FXML
+    void deleteItemBTNHandler(ActionEvent event) {
+        if (Inventory.allProducts.isEmpty() == true) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning!");
+            alert.setContentText("Input cannot be empty! Please try again.");
+        }
     }
 
+    // Exit Program
     @FXML
     void exitProgramBTNHandler(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the program?");
@@ -84,12 +90,13 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    // Open Export Window
     @FXML
     void exportItemBTNHandler(ActionEvent event) throws IOException {
         Parent root;
         Stage stage = (Stage) importItemButton.getScene().getWindow();
       
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("ExportProducts.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Export_Controller/ExportProducts.fxml"));
       
         root = loader.load();
         
@@ -98,12 +105,13 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
+    // Open Import Window
     @FXML
     void importItemBTNHandler(ActionEvent event) throws IOException {
         Parent root;
         Stage stage = (Stage) importItemButton.getScene().getWindow();
       
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("ImportSelection.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportSelection.fxml"));
       
         root = loader.load();
         
@@ -112,23 +120,22 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
-    
-    @FXML
-    void modifyItemBTNHandler(ActionEvent event) {
-    }
-    
-    @FXML
-    void saveReceiptBTNHandler(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void saveExitBTNHandler(ActionEvent event) {
-        
-    }
-    
     @FXML
     void inputSearchHandler(ActionEvent event) {}
+
+    @FXML
+    void modifyItemBTNHandler(ActionEvent event) throws IOException {
+        Parent root;
+        Stage stage = (Stage) importItemButton.getScene().getWindow();
+      
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Modify_Controller/ModifyProduct.fxml"));
+      
+        root = loader.load();
+        
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     void searchProductBTNHandler(ActionEvent event) {
