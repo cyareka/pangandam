@@ -71,11 +71,7 @@ public class MainMenuController implements Initializable {
     // Delete Product
     @FXML
     void deleteItemBTNHandler(ActionEvent event) {
-        if (Inventory.allProducts.isEmpty() == true) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Warning!");
-            alert.setContentText("Input cannot be empty! Please try again.");
-        }
+        
     }
 
     // Exit Program
@@ -121,7 +117,13 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    void inputSearchHandler(ActionEvent event) {}
+    void inputSearchHandler(ActionEvent event) {
+        if (Inventory.allProducts.isEmpty() == true) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning!");
+            alert.setContentText("Input cannot be empty! Please try again.");
+        }
+    }
 
     @FXML
     void modifyItemBTNHandler(ActionEvent event) throws IOException {

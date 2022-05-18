@@ -37,8 +37,8 @@
                         <Font name="HarmonyOS Sans SC" size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="exportMinInput" layoutX="191.0" layoutY="165.0" onAction="#exportMinInputHandler" prefHeight="30.0" prefWidth="62.0" />
-                  <TextField fx:id="exportInputProductName11" layoutX="262.0" layoutY="165.0" onAction="#exportInputProductNameHandler" prefHeight="30.0" prefWidth="63.0" />
+                  <TextField fx:id="exportMinInput" layoutX="191.0" layoutY="165.0" onAction="#exportMinInputHandler" prefHeight="30.0" prefWidth="62.0" promptText="1" />
+                  <TextField fx:id="exportInputProductName11" layoutX="262.0" layoutY="165.0" onAction="#exportInputProductNameHandler" prefHeight="30.0" prefWidth="63.0" promptText="5000" />
                   <Label layoutX="205.0" layoutY="197.0" text="Min.">
                      <font>
                         <Font name="HarmonyOS Sans SC" size="15.0" />
@@ -65,16 +65,16 @@
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="exportDateInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" />
-            <TextField fx:id="exportInputReceiver" layoutX="217.0" layoutY="69.0" prefHeight="15.0" prefWidth="248.0" />
-            <TextField fx:id="exportSenderInput" layoutX="217.0" layoutY="31.0" prefHeight="15.0" prefWidth="248.0" />
+            <TextField fx:id="exportDateInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" promptText="Input export date" />
+            <TextField fx:id="exportInputReceiver" layoutX="217.0" layoutY="69.0" prefHeight="15.0" prefWidth="248.0" promptText="Input organization to receive" />
+            <TextField fx:id="exportSenderInput" layoutX="217.0" layoutY="31.0" prefHeight="15.0" prefWidth="248.0" promptText="Input organization name as sender" />
             <Button fx:id="exportAddProductBTN" layoutX="313.0" layoutY="217.0" mnemonicParsing="false" onAction="#exportAddProductBTNHandler" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Add Product to Export" textFill="WHITE" />
             <Label layoutX="45.0" layoutY="110.0" text="Product Name">
                <font>
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="exportInputProductName" layoutX="217.0" layoutY="107.0" prefHeight="15.0" prefWidth="248.0" />
+            <TextField fx:id="exportInputProductName" layoutX="217.0" layoutY="107.0" prefHeight="15.0" prefWidth="248.0" promptText="Input product name from product list" />
          </children>
       </AnchorPane>
    </center>
@@ -108,7 +108,6 @@
                </columns>
             </TableView>
             <Button fx:id="exportRemoveBTN" layoutX="241.0" layoutY="426.0" mnemonicParsing="false" onAction="#exportRemoveBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Remove" textFill="WHITE" />
-            <Button fx:id="exportModifyBTN" layoutX="169.0" layoutY="426.0" mnemonicParsing="false" onAction="#exportModifyBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Modify" textFill="WHITE" />
          </children>
       </AnchorPane>
    </right>

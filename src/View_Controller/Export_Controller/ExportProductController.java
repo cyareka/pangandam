@@ -35,9 +35,6 @@ public class ExportProductController {
     private TextField exportMinInput;
 
     @FXML
-    private Button exportModifyBTN;
-
-    @FXML
     private Button exportRemoveBTN;
 
     @FXML
@@ -81,11 +78,6 @@ public class ExportProductController {
 
     @FXML
     void exportMinInputHandler(ActionEvent event) {
-
-    }
-
-    @FXML
-    void exportModifyBTNHandler(ActionEvent event) {
 
     }
 

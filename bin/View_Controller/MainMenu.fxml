@@ -35,8 +35,8 @@
             </Button>
             <TableView fx:id="productTableView" layoutX="21.0" layoutY="56.0" prefHeight="310.0" prefWidth="338.0" style="-fx-background-radius: 20;">
                <columns>
-                  <TableColumn fx:id="productColumn" prefWidth="226.40000915527344" text="Product Name" />
-                  <TableColumn fx:id="inStockColumn" minWidth="0.0" prefWidth="112.0" text="In Stock" />
+                  <TableColumn fx:id="productColumn" prefWidth="199.1999969482422" text="Product Name" />
+                  <TableColumn fx:id="inStockColumn" minWidth="0.0" prefWidth="139.20001220703125" text="In Stock" />
                </columns>
             </TableView>
             <TextField fx:id="searchProductInput" layoutX="123.0" layoutY="14.0" onAction="#inputSearchHandler" prefHeight="28.0" prefWidth="162.0" promptText="Input product name" style="-fx-background-radius: 10;" />
