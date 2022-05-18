@@ -34,10 +34,7 @@ public class ModifyProductController implements Initializable {
     private CheckBox modifyFoodsBTN;
 
     @FXML
-    private CheckBox modifyNoFlamBTN;
-
-    @FXML
-    private CheckBox modifyNoPeriBTN;
+    private TextField modifyExpiryDate;
 
     @FXML
     private TextField modifyOrgNameInput;
@@ -78,13 +75,10 @@ public class ModifyProductController implements Initializable {
     }
 
     @FXML
-    void modifyProductBTNHandler(ActionEvent event) {
-
+    void modifyProductBTNHandler(ActionEvent event) throws IOException {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-    }
+    public void initialize(URL url, ResourceBundle rb) {}
 
 }

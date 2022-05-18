@@ -65,7 +65,7 @@
                   <Font name="HarmonyOS Sans SC" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="exporDateInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" />
+            <TextField fx:id="exportDateInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" />
             <TextField fx:id="exportInputReceiver" layoutX="217.0" layoutY="69.0" prefHeight="15.0" prefWidth="248.0" />
             <TextField fx:id="exportSenderInput" layoutX="217.0" layoutY="31.0" prefHeight="15.0" prefWidth="248.0" />
             <Button fx:id="exportAddProductBTN" layoutX="313.0" layoutY="217.0" mnemonicParsing="false" onAction="#exportAddProductBTNHandler" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Add Product to Export" textFill="WHITE" />

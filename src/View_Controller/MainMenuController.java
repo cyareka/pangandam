@@ -152,5 +152,10 @@ public class MainMenuController implements Initializable {
 
         productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         inStockColumn.setCellValueFactory(new PropertyValueFactory<>("in stock"));
+
+        proofOfTransaction.setItems(Inventory.getAllProducts());
+
+        productExpColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        toExportColumn.setCellValueFactory(new PropertyValueFactory<>("to export"));
     }
 }

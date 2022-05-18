@@ -14,7 +14,7 @@ public class ExportProductController {
     private BorderPane Export;
 
     @FXML
-    private TextField exporDateInput;
+    private TextField exportDateInput;
 
     @FXML
     private Button exportAddProductBTN;
