@@ -75,11 +75,11 @@ public class ImportProductController implements Initializable {
                 alert.setContentText("Quantity must not exceed 5000 items.");
                 alert.showAndWait();
             } else {
-                if (yesPeri) {
+                if (yesPeri || yesPeri == false) {
                     Inventory.addProduct(new Foods(nameOrg, nameProduct, quantity, yesPeri, expDate));
-                } else if (yesFlam) {
+                } else if (yesFlam || yesFlam == false) {
                     Inventory.addProduct(new SurvivalKit(nameOrg, nameProduct, quantity, yesFlam));
-                }
+                } 
 
                 Stage stage;
                 Parent root;

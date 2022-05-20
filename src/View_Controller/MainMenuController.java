@@ -5,8 +5,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import ProductModel.Foods;
 import ProductModel.Inventory;
 import ProductModel.Product;
+import ProductModel.SurvivalKit;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,24 +42,27 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private Button importItemButton;
+    
+    @FXML
+    TableView<Product> productTableView;
 
     @FXML
-    private TableColumn<Product, String> inStockColumn;
-
-    @FXML
-    private Button modifyItemButton;
+    private TableColumn<Product, String> orgNameColumn;
 
     @FXML
     private TableColumn<Product, String> productColumn;
 
     @FXML
-    private TableColumn<Product, String> productExpColumn;
+    private TableColumn<Product, Integer> inStockColumn;
 
     @FXML
-    private TableView<Product> productTableView;
+    private TableColumn<Foods, Boolean> foodsColumn;
 
     @FXML
-    private TableView<Product> proofOfTransaction;
+    private TableColumn<SurvivalKit, Boolean> skColumn;
+
+    @FXML
+    private TableColumn<Foods, String> expiryDateColumn;
 
     @FXML
     private Button searchProductButton;
@@ -65,13 +70,28 @@ public class MainMenuController implements Initializable {
     @FXML
     private TextField searchProductInput;
 
-    @FXML
-    private TableColumn<Product, String> toExportColumn;
-
     // Delete Product
     @FXML
-    void deleteItemBTNHandler(ActionEvent event) {
-        
+    void deleteItemBTNHandler(ActionEvent event) throws IOException {
+        if (Inventory.allProducts.isEmpty() == true) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("You must enter a product before you can delete it.");
+            alert.showAndWait();
+        } else if (productTableView.getSelectionModel().isEmpty() == true) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Warning");
+            alert.setContentText("Select a product to delete it.");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this product?");
+            alert.setTitle("Confirm Deletion");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK){
+                Product selectedProduct = (Product)productTableView.getSelectionModel().getSelectedItem();
+                Inventory.allProducts.remove(selectedProduct);
+            }
+        }
     }
 
     // Exit Program
@@ -90,9 +110,9 @@ public class MainMenuController implements Initializable {
     @FXML
     void exportItemBTNHandler(ActionEvent event) throws IOException {
         Parent root;
-        Stage stage = (Stage) importItemButton.getScene().getWindow();
+        Stage stage = (Stage) exportItemButton.getScene().getWindow();
       
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Export_Controller/ExportProducts.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Export_Controller/ExportProduct.fxml"));
       
         root = loader.load();
         
@@ -107,8 +127,8 @@ public class MainMenuController implements Initializable {
         Parent root;
         Stage stage = (Stage) importItemButton.getScene().getWindow();
       
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportSelection.fxml"));
-      
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportProduct.fxml"));
+        
         root = loader.load();
         
         Scene scene = new Scene(root);
@@ -120,23 +140,9 @@ public class MainMenuController implements Initializable {
     void inputSearchHandler(ActionEvent event) {
         if (Inventory.allProducts.isEmpty() == true) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Warning!");
+            alert.setTitle("Warning");
             alert.setContentText("Input cannot be empty! Please try again.");
         }
-    }
-
-    @FXML
-    void modifyItemBTNHandler(ActionEvent event) throws IOException {
-        Parent root;
-        Stage stage = (Stage) importItemButton.getScene().getWindow();
-      
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/Modify_Controller/ModifyProduct.fxml"));
-      
-        root = loader.load();
-        
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
@@ -144,7 +150,9 @@ public class MainMenuController implements Initializable {
         String searchProduct = searchProductInput.getText();
         
         for (Product productSearched : Inventory.getAllProducts()) {
-            if (productSearched.getNameProduct().equals(searchProduct));
+            if (productSearched.getNameProduct().equals(searchProduct) || productSearched.getNameOrg().equals(searchProduct)) {
+                productTableView.getSelectionModel().select(productSearched);
+            }
         }
     }
 
@@ -152,12 +160,11 @@ public class MainMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         productTableView.setItems(Inventory.getAllProducts());
 
-        productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        inStockColumn.setCellValueFactory(new PropertyValueFactory<>("in stock"));
-
-        proofOfTransaction.setItems(Inventory.getAllProducts());
-
-        productExpColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        toExportColumn.setCellValueFactory(new PropertyValueFactory<>("to export"));
+        orgNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("nameOrg"));
+        productColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("nameProduct"));
+        inStockColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("quantity"));
+        foodsColumn.setCellValueFactory(new PropertyValueFactory<Foods, Boolean>("perishable"));
+        skColumn.setCellValueFactory(new PropertyValueFactory<SurvivalKit, Boolean>("flammable"));
+        expiryDateColumn.setCellValueFactory(new PropertyValueFactory<Foods, String>("expiryDate"));
     }
 }

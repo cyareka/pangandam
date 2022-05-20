@@ -2,8 +2,8 @@ package ProductModel;
 
 public class SurvivalKit extends Product {
 
-   private boolean flammable;
-   
+   private Boolean flammable;
+
    public SurvivalKit(final String nameOrg, final String nameProduct, final int quantity) {
       super(nameOrg, nameProduct, quantity);
       this.flammable = false;
@@ -14,7 +14,11 @@ public class SurvivalKit extends Product {
       this.flammable = flammable;
    }
 
-   public boolean verifyFlammable(Boolean flammable) {
-      return flammable = this.flammable;
+   public Boolean getFlammable() {
+      return flammable;
+   }
+
+   public void setFlammable(Boolean flammable) {
+      this.flammable = flammable;
    }
 }

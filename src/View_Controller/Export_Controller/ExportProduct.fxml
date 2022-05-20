@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="Export" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="1127.0" style="-fx-background-color: #E1ECE6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.Export_Controller.ExportProductController">
+   <top>
+      <AnchorPane prefHeight="91.0" prefWidth="518.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="34.0" layoutY="26.0" text="Export &amp; Tracking">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="534.0" layoutY="26.0" text="Products">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="133.0" prefWidth="518.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="26.0" layoutY="-21.0" prefHeight="240.0" prefWidth="466.0" style="-fx-background-color: #BFDEC6; -fx-background-radius: 20;">
+               <children>
+                  <Label layoutX="18.0" layoutY="57.0" text="Sender">
+                     <font>
+                        <Font name="HarmonyOS Sans SC" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="exportQuantityInput" layoutX="192.0" layoutY="198.0" prefHeight="30.0" prefWidth="133.0" promptText="1-5000" />
+                  <TextField fx:id="exportStockQuantity" layoutX="191.0" layoutY="161.0" prefHeight="30.0" prefWidth="250.0" promptText="Input in stock quantity" />
+                  <Label layoutX="18.0" layoutY="168.0" text="In Stock">
+                     <font>
+                        <Font name="HarmonyOS Sans SC" size="15.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Label layoutX="45.0" text="Date">
+               <font>
+                  <Font name="HarmonyOS Sans SC" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="72.0" text="Receiver">
+               <font>
+                  <Font name="HarmonyOS Sans SC" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="183.0" text="To Export">
+               <font>
+                  <Font name="HarmonyOS Sans SC" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="exportDateInput" layoutX="217.0" layoutY="-5.0" prefHeight="15.0" prefWidth="248.0" promptText="Input export date" />
+            <TextField fx:id="exportInputReceiver" layoutX="217.0" layoutY="69.0" prefHeight="15.0" prefWidth="248.0" promptText="Input organization to receive" />
+            <TextField fx:id="exportSenderInput" layoutX="217.0" layoutY="31.0" prefHeight="15.0" prefWidth="248.0" promptText="Input organization name as sender" />
+            <Button fx:id="exportAddProductBTN" layoutX="313.0" layoutY="227.0" mnemonicParsing="false" onAction="#exportAddProductBTNHandler" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Add Product to Export" textFill="WHITE" />
+            <Label layoutX="45.0" layoutY="110.0" text="Product Name">
+               <font>
+                  <Font name="HarmonyOS Sans SC" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="exportInputProductName" layoutX="217.0" layoutY="105.0" prefHeight="15.0" prefWidth="248.0" promptText="Input product name from product list" />
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="57.0" prefWidth="878.0" style="-fx-background-color: #83AF97;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="exportCancelBTN" layoutX="1041.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportCancelBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Cancel" textFill="WHITE" />
+            <Button fx:id="exportSaveInSystemBTN" layoutX="745.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportSaveInSystemBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Save to System" textFill="WHITE" />
+            <Button fx:id="exportSaveBTN" layoutX="869.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportSaveBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Save and Export to File" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="479.0" prefWidth="593.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="productTableView" layoutX="1.0" layoutY="-27.0" prefHeight="192.0" prefWidth="570.0">
+              <columns>
+                  <TableColumn fx:id="orgNameColumn" prefWidth="143.99994206428528" text="Organization Name" />
+                <TableColumn fx:id="productColumn" prefWidth="103.99998474121094" text="Product Name" />
+                <TableColumn fx:id="inStockColumn" prefWidth="70.39996337890625" text="In Stock" />
+                  <TableColumn fx:id="foodsColumn" prefWidth="74.4000244140625" text="Perishable" />
+                  <TableColumn fx:id="skColumn" prefWidth="86.4000244140625" text="Flammable" />
+                  <TableColumn fx:id="expiryDateColumn" prefWidth="96.00003051757812" text="Expiry Date" />
+              </columns>
+            </TableView>
+            <Label layoutY="189.0" text="Proof of Transaction">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="20.0" />
+               </font>
+            </Label>
+            <TableView fx:id="productExportList" layoutX="-3.0" layoutY="224.0" prefHeight="192.0" prefWidth="574.0">
+               <columns>
+                  <TableColumn fx:id="dateExpColumn" prefWidth="75.0" text="Date" />
+                  <TableColumn fx:id="senderExpColumn" prefWidth="74.40001678466797" text="Sender" />
+                  <TableColumn fx:id="receiverExpColumn" prefWidth="75.0" text="Receiver" />
+                  <TableColumn fx:id="productExpColumn" prefWidth="119.99993896484375" text="Product Name" />
+                  <TableColumn fx:id="toExportColumn" minWidth="0.0" prefWidth="92.0" text="To Export" />
+               </columns>
+            </TableView>
+            <Button fx:id="exportRemoveBTN" layoutX="501.0" layoutY="426.0" mnemonicParsing="false" onAction="#exportRemoveBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Remove" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
