@@ -17,6 +17,7 @@ public class ProductExport extends Product {
       this.receiver = receiver;
    }
 
+   // Getters and Setters
    public String getDate() {
       return date;
    }

@@ -2,11 +2,9 @@ package ProductModel;
 
 public class Foods extends Product {
 
-   // Instantiated variables
    private Boolean perishable;
    private String expiryDate;
 
-   // Default constructor
    public Foods(final String nameOrg, final String nameProduct, final int quantity) {
       super(nameOrg, nameProduct, quantity);
       this.perishable = false;
@@ -19,7 +17,7 @@ public class Foods extends Product {
       this.expiryDate = expiryDate;
    }
 
-   // Generate Getters & Setters
+   // Getters and Setters
    public Boolean getPerishable() {
       return perishable;
    }

@@ -77,8 +77,8 @@
       <AnchorPane prefHeight="57.0" prefWidth="878.0" style="-fx-background-color: #83AF97;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="exportCancelBTN" layoutX="1041.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportCancelBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Cancel" textFill="WHITE" />
-            <Button fx:id="exportSaveInSystemBTN" layoutX="745.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportSaveInSystemBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Save to System" textFill="WHITE" />
-            <Button fx:id="exportSaveBTN" layoutX="869.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportSaveBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Save and Export to File" textFill="WHITE" />
+            <Button fx:id="exportSaveInSystemBTN" layoutX="915.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportSaveInSystemBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Save to System" textFill="WHITE" />
+            <Button fx:id="exportFileBTN" layoutX="804.0" layoutY="14.0" mnemonicParsing="false" onAction="#exportFileBTNHandler" style="-fx-background-color: #E68545; -fx-background-radius: 10; -fx-font-weight: bold;" text="Export to File" textFill="WHITE" />
          </children>
       </AnchorPane>
    </bottom>

@@ -46,7 +46,9 @@
                   <CheckBox fx:id="importYesPeriBTN" layoutX="191.0" layoutY="166.0" mnemonicParsing="false" text="Yes" />
                   <CheckBox fx:id="importSKBTN" layoutX="266.0" layoutY="132.0" mnemonicParsing="false" text="Survival Kit" />
                   <CheckBox fx:id="importFoodsBTN" layoutX="191.0" layoutY="132.0" mnemonicParsing="false" text="Foods" />
-                  <TextField fx:id="importExpiryDateInput" layoutX="253.0" layoutY="161.0" prefHeight="30.0" prefWidth="103.0" promptText="Expiry Date" />
+                  <TextField fx:id="importExpiryDateInput" layoutX="331.0" layoutY="161.0" prefHeight="30.0" prefWidth="103.0" promptText="Expiry Date" />
+                  <CheckBox fx:id="importNoPeriBTN" layoutX="266.0" layoutY="166.0" mnemonicParsing="false" text="No" />
+                  <CheckBox fx:id="importNoFlamBTN" layoutX="267.0" layoutY="201.0" mnemonicParsing="false" text="No" />
                </children></Pane>
             <Label layoutX="45.0" text="Organization Name">
                <font>

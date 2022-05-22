@@ -12,7 +12,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
             Parent root = FXMLLoader.load(getClass().getResource("/View_Controller/MainMenu.fxml"));
     
             Scene scene = new Scene(root);
@@ -20,8 +19,8 @@ public class Main extends Application {
             stage.getIcons().add(new Image("/Icons/icon.png"));
             stage.setTitle("Disaster Inventory Management System");
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
-
     }
 
     public static void main(String[] args) {

@@ -1,10 +1,13 @@
 package View_Controller;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import ProductModel.Foods;
 import ProductModel.Inventory;
 import ProductModel.Product;
@@ -23,52 +26,28 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainMenuController implements Initializable {
 
-    @FXML
-    private Label MainLabel;
-
-    @FXML
-    private Button deleteItemButton;
-
-    @FXML
-    private Button exitProgramButton;
-
-    @FXML
-    private Button exportItemButton;
-
-    @FXML
-    private Button importItemButton;
-    
-    @FXML
-    TableView<Product> productTableView;
-
-    @FXML
-    private TableColumn<Product, String> orgNameColumn;
-
-    @FXML
-    private TableColumn<Product, String> productColumn;
-
-    @FXML
-    private TableColumn<Product, Integer> inStockColumn;
-
-    @FXML
-    private TableColumn<Foods, Boolean> foodsColumn;
-
-    @FXML
-    private TableColumn<SurvivalKit, Boolean> skColumn;
-
-    @FXML
-    private TableColumn<Foods, String> expiryDateColumn;
-
-    @FXML
-    private Button searchProductButton;
-
-    @FXML
-    private TextField searchProductInput;
+    @FXML private Label MainLabel;
+    @FXML private Button deleteItemButton;
+    @FXML private Button saveExitProgramButton;
+    @FXML private Button exitProgramButton;
+    @FXML private Button exportItemButton;
+    @FXML private Button importItemButton;
+    @FXML public TableView<Product> productTableView;
+    @FXML private TableColumn<Product, String> orgNameColumn;
+    @FXML private TableColumn<Product, String> productColumn;
+    @FXML private TableColumn<Product, Integer> inStockColumn;
+    @FXML private TableColumn<Foods, Boolean> foodsColumn;
+    @FXML private TableColumn<SurvivalKit, Boolean> skColumn;
+    @FXML private TableColumn<Foods, String> expiryDateColumn;
+    @FXML private Button searchProductButton;
+    @FXML private TextField searchProductInput;
 
     // Delete Product
     @FXML
@@ -94,14 +73,50 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    // Exit Program
+    // Save & Exit Program
     @FXML
-    void exitProgramBTNHandler(ActionEvent event) {
+    void saveExitProgramBTNHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the program?");
         alert.setTitle("Exit Program");
+        alert.initStyle(StageStyle.UTILITY);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Writer writer = null;
+            Foods food = new Foods("","", 0);
+            SurvivalKit sk = new SurvivalKit("", "", 0);
+
+            try {
+                File file = new File ("Product List.csv");
+                writer = new BufferedWriter(new FileWriter(file));
+                for (Product product : Inventory.getAllProducts()) {
+                    String mainText = product.getNameOrg() + ","
+                                    + product.getNameProduct() + ","
+                                    + product.getQuantity() + ","
+                                    + food.getPerishable() + ","
+                                    + sk.getFlammable() + ","
+                                    + food.getExpiryDate() + "\n";
+                    writer.write(mainText);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                writer.flush();
+                writer.close();
+            }
+
+            Platform.exit();
+        }
+    }
+
+    @FXML
+    void exitProgramBTNHandler(ActionEvent event) {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to close the program? Current database will not be saved.");
+        alert.setTitle("Exit Program");
+        alert.initStyle(StageStyle.UTILITY);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             Platform.exit();
         }
     }
@@ -127,7 +142,7 @@ public class MainMenuController implements Initializable {
         Parent root;
         Stage stage = (Stage) importItemButton.getScene().getWindow();
       
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportProduct.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportSelection.fxml"));
         
         root = loader.load();
         
@@ -152,6 +167,11 @@ public class MainMenuController implements Initializable {
         for (Product productSearched : Inventory.getAllProducts()) {
             if (productSearched.getNameProduct().equals(searchProduct) || productSearched.getNameOrg().equals(searchProduct)) {
                 productTableView.getSelectionModel().select(productSearched);
+            } else {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("This product does not exist.");
+                alert.showAndWait();
             }
         }
     }
