@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -29,11 +28,6 @@
                   <Font name="HarmonyOS Sans SC Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="searchProductButton" layoutX="536.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchProductBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10; -fx-font-weight: bold;" text="Search" textFill="WHITE">
-               <font>
-                  <Font name="HarmonyOS Sans SC" size="14.0" />
-               </font>
-            </Button>
             <TableView fx:id="productTableView" layoutX="19.0" layoutY="56.0" prefHeight="310.0" prefWidth="588.0" style="-fx-background-radius: 20;">
                <columns>
                   <TableColumn fx:id="orgNameColumn" prefWidth="138.4000244140625" text="Organization Name" />
@@ -44,10 +38,11 @@
                   <TableColumn fx:id="expiryDateColumn" prefWidth="107.99993896484375" text="Expiry Date" />
                </columns>
             </TableView>
-            <TextField fx:id="searchProductInput" layoutX="361.0" layoutY="14.0" onAction="#inputSearchHandler" prefHeight="28.0" prefWidth="162.0" promptText="Input product name" style="-fx-background-radius: 10;" />
-            <Button fx:id="importItemButton" layoutX="226.0" layoutY="382.0" mnemonicParsing="false" onAction="#importItemBTNHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Import" textFill="WHITE" />
-            <Button fx:id="deleteItemButton" layoutX="361.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteItemBTNHandler" style="-fx-background-color: #204A38; -fx-font-weight: bold; -fx-background-radius: 10;" text="Delete" textFill="WHITE" />
-            <Button fx:id="exportItemButton" layoutX="294.0" layoutY="382.0" mnemonicParsing="false" onAction="#exportItemBTNHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Export" textFill="WHITE" />
+            <Button fx:id="importItemButton" layoutX="411.0" layoutY="382.0" mnemonicParsing="false" onAction="#importItemBTNHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Import" textFill="WHITE" />
+            <Button fx:id="deleteItemButton" layoutX="547.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteItemBTNHandler" style="-fx-background-color: #204A38; -fx-font-weight: bold; -fx-background-radius: 10;" text="Delete" textFill="WHITE" />
+            <Button fx:id="exportItemButton" layoutX="482.0" layoutY="382.0" mnemonicParsing="false" onAction="#exportItemBTNHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Export" textFill="WHITE" />
+            <Button fx:id="importFoodsButton" layoutX="22.0" layoutY="382.0" mnemonicParsing="false" onAction="#importFoodsFileBTNHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Foods Import" textFill="WHITE" />
+            <Button fx:id="importSKButton" layoutX="132.0" layoutY="382.0" mnemonicParsing="false" onAction="#importSKFileBTNHandler" style="-fx-background-color: #E68545; -fx-font-weight: bold; -fx-background-radius: 10;" text="Survival Kit Import" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

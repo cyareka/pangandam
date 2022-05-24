@@ -1,13 +1,12 @@
 package View_Controller;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+
 import ProductModel.Foods;
 import ProductModel.Inventory;
 import ProductModel.Product;
@@ -25,7 +24,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -39,6 +37,8 @@ public class MainMenuController implements Initializable {
     @FXML private Button exitProgramButton;
     @FXML private Button exportItemButton;
     @FXML private Button importItemButton;
+    @FXML private Button importFoodsFileButton;
+    @FXML private Button importSKFileButton;
     @FXML public TableView<Product> productTableView;
     @FXML private TableColumn<Product, String> orgNameColumn;
     @FXML private TableColumn<Product, String> productColumn;
@@ -46,8 +46,6 @@ public class MainMenuController implements Initializable {
     @FXML private TableColumn<Foods, Boolean> foodsColumn;
     @FXML private TableColumn<SurvivalKit, Boolean> skColumn;
     @FXML private TableColumn<Foods, String> expiryDateColumn;
-    @FXML private Button searchProductButton;
-    @FXML private TextField searchProductInput;
 
     // Delete Product
     @FXML
@@ -56,17 +54,21 @@ public class MainMenuController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("You must enter a product before you can delete it.");
+            alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
         } else if (productTableView.getSelectionModel().isEmpty() == true) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Warning");
             alert.setContentText("Select a product to delete it.");
+            alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this product?");
             alert.setTitle("Confirm Deletion");
+            alert.initStyle(StageStyle.UTILITY);
+
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK){
+            if (result.isPresent() && result.get() == ButtonType.OK) {
                 Product selectedProduct = (Product)productTableView.getSelectionModel().getSelectedItem();
                 Inventory.allProducts.remove(selectedProduct);
             }
@@ -76,36 +78,26 @@ public class MainMenuController implements Initializable {
     // Save & Exit Program
     @FXML
     void saveExitProgramBTNHandler(ActionEvent event) throws IOException {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the program?");
-        alert.setTitle("Exit Program");
+        
+        alert.setTitle("Save & Exit");
         alert.initStyle(StageStyle.UTILITY);
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            Writer writer = null;
-            Foods food = new Foods("","", 0);
-            SurvivalKit sk = new SurvivalKit("", "", 0);
-
-            try {
-                File file = new File ("Product List.csv");
-                writer = new BufferedWriter(new FileWriter(file));
-                for (Product product : Inventory.getAllProducts()) {
-                    String mainText = product.getNameOrg() + ","
-                                    + product.getNameProduct() + ","
-                                    + product.getQuantity() + ","
-                                    + food.getPerishable() + ","
-                                    + sk.getFlammable() + ","
-                                    + food.getExpiryDate() + "\n";
-                    writer.write(mainText);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                writer.flush();
-                writer.close();
-            }
-
-            Platform.exit();
+            Stage stage;
+            Parent root;
+            stage = (Stage) saveExitProgramButton.getScene().getWindow();
+    
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/SaveExit.fxml"));
+    
+            root = loader.load();
+    
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
         }
     }
 
@@ -142,7 +134,7 @@ public class MainMenuController implements Initializable {
         Parent root;
         Stage stage = (Stage) importItemButton.getScene().getWindow();
       
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportSelection.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/Import_Controller/ImportProduct.fxml"));
         
         root = loader.load();
         
@@ -151,28 +143,74 @@ public class MainMenuController implements Initializable {
         stage.show();
     }
 
+    // SK from File
     @FXML
-    void inputSearchHandler(ActionEvent event) {
-        if (Inventory.allProducts.isEmpty() == true) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Warning");
-            alert.setContentText("Input cannot be empty! Please try again.");
-        }
-    }
+    void importSKFileBTNHandler(ActionEvent event) throws IOException {
+        File file = new File("Survival Kit - Product List.csv");
+        Scanner inputStream = new Scanner(file);
+        while ((inputStream.hasNext())) {
+            String data = inputStream.next();
+            String[] lineValue = data.split(",");
 
+            Inventory.addProduct(new SurvivalKit(String.valueOf(lineValue[0].toString()), String.valueOf(lineValue[1].toString()), Integer.valueOf(lineValue[2].toString()), Boolean.valueOf(lineValue[4])));
+
+            productTableView.setItems(Inventory.getAllProducts());
+        }
+        inputStream.close();
+
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Import Survival Kit Success");
+        alert.setContentText("Import file is successful.");
+        alert.initStyle(StageStyle.UTILITY);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            importFoodsFileButton.setDisable(true);
+        }
+
+        Stage stage;
+        Parent root;
+        stage = (Stage) importSKFileButton.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/MainMenu.fxml"));
+
+        root = loader.load();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    // Foods from File
     @FXML
-    void searchProductBTNHandler(ActionEvent event) {
-        String searchProduct = searchProductInput.getText();
-        
-        for (Product productSearched : Inventory.getAllProducts()) {
-            if (productSearched.getNameProduct().equals(searchProduct) || productSearched.getNameOrg().equals(searchProduct)) {
-                productTableView.getSelectionModel().select(productSearched);
-            } else {
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("This product does not exist.");
-                alert.showAndWait();
-            }
+    void importFoodsFileBTNHandler(ActionEvent event) throws IOException {
+        File file = new File("Foods - Product List.csv");
+        Scanner inputStream = new Scanner(file);
+        while ((inputStream.hasNext())) {
+            String data = inputStream.next();
+            String[] lineValue = data.split(",");
+
+            Inventory.addProduct(new Foods(String.valueOf(lineValue[0].toString()), String.valueOf(lineValue[1].toString()), Integer.valueOf(lineValue[2].toString()), Boolean.valueOf(lineValue[3].toString()), String.valueOf(lineValue[5].toString())));
+        }
+        inputStream.close();
+
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Import Foods Success");
+        alert.setContentText("Import file is successful.");
+        alert.initStyle(StageStyle.UTILITY);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Stage stage;
+            Parent root;
+            stage = (Stage) importFoodsFileButton.getScene().getWindow();
+    
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/MainMenu.fxml"));
+    
+            root = loader.load();
+    
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

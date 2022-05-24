@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="300.0" style="-fx-background-color: #E1ECE6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.SaveExitController">
+   <top>
+      <AnchorPane fx:id="ImportSelect" prefHeight="58.0" prefWidth="394.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="34.0" layoutY="26.0" text="Save &amp; Exit">
+               <font>
+                  <Font name="HarmonyOS Sans SC Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <AnchorPane prefHeight="162.0" prefWidth="314.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="11.0" layoutY="14.0" prefHeight="118.0" prefWidth="279.0" style="-fx-background-color: #BFDEC6; -fx-background-radius: 20;">
+               <children>
+                  <Label layoutX="18.0" prefHeight="71.0" prefWidth="322.0" text="Select which file to save:" wrapText="true">
+                     <font>
+                        <Font name="HarmonyOS Sans SC" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="foodsBTN" layoutX="71.0" layoutY="71.0" mnemonicParsing="false" onAction="#foodsBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10;" text="Foods" textFill="WHITE">
+                     <font>
+                        <Font name="HarmonyOS Sans SC Bold" size="13.600000381469727" />
+                     </font>
+                  </Button>
+                  <Button fx:id="survivalKitBTN" layoutX="133.0" layoutY="71.0" mnemonicParsing="false" onAction="#survivalKitBTNHandler" style="-fx-background-color: #204A38; -fx-background-radius: 10;" text="Survival Kit" textFill="WHITE">
+                     <font>
+                        <Font name="HarmonyOS Sans SC Bold" size="13.600000381469727" />
+                     </font>
+                  </Button>
+               </children></Pane>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

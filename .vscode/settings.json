@@ -11,6 +11,10 @@
         "d:\\HUAWEI-PC\\Documents\\Downloads\\Extensions\\openjfx-18.0.1_windows-x64_bin-sdk\\javafx-sdk-18.0.1\\lib\\javafx.swing.jar",
         "d:\\HUAWEI-PC\\Documents\\Downloads\\Extensions\\openjfx-18.0.1_windows-x64_bin-sdk\\javafx-sdk-18.0.1\\lib\\javafx.web.jar",
         "d:\\HUAWEI-PC\\Documents\\Downloads\\Extensions\\openjfx-18.0.1_windows-x64_bin-sdk\\javafx-sdk-18.0.1\\lib\\javafx-swt.jar",
-        "d:\\HUAWEI-PC\\Documents\\Downloads\\Extensions\\poi-bin-5.2.2-20220312\\ooxml-lib\\xmlbeans-5.0.3.jar"
+        "d:\\HUAWEI-PC\\Documents\\Downloads\\Extensions\\poi-bin-5.2.2-20220312\\ooxml-lib\\xmlbeans-5.0.3.jar",
+        "d:\\HUAWEI-PC\\Documents\\Downloads\\Extensions\\opencsv-5.6.jar"
+    ],
+    "cSpell.words": [
+        "rawr"
     ]
 }

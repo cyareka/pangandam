@@ -11,7 +11,7 @@ public class Foods extends Product {
       this.expiryDate = "";
    }
 
-   public Foods(final String nameOrg, final String nameProduct, final int quantity, final boolean perishable, final String expiryDate) {
+   public Foods(final String nameOrg, final String nameProduct, final int quantity, final Boolean perishable, final String expiryDate) {
       super(nameOrg, nameProduct, quantity);
       this.perishable = perishable;
       this.expiryDate = expiryDate;

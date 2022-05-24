@@ -110,7 +110,7 @@ public class ImportProductController implements Initializable {
             Parent root;
             stage = (Stage) importCancelBTN.getScene().getWindow();
 
-            FXMLLoader loader= new FXMLLoader(getClass().getResource("/View_Controller/MainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View_Controller/MainMenu.fxml"));
             root = loader.load();
 
             Scene scene = new Scene(root);

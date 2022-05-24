@@ -163,12 +163,7 @@ public class ExportProductController implements Initializable {
             File exp = new File ("Proof of Transaction.csv");
             writer = new BufferedWriter(new FileWriter(exp));
             for (ProductExport productExport : Inventory.getAllProductExport()) {
-                String expText = "Date" + ","
-                            + "Sender" + ","
-                            + "Receiver" + ","
-                            + "Product Name" + ","
-                            + "To Export" + "\n"
-                            + productExport.getDate() + ","
+                String expText = productExport.getDate() + ","
                             + productExport.getNameOrg() + ","
                             + productExport.getReceiver() + ","
                             + productExport.getNameProduct() + ","
@@ -200,7 +195,7 @@ public class ExportProductController implements Initializable {
         while ((inputStream.hasNext())) {
             String data = inputStream.next();
             String[] lineValue = data.split(",");
-            imp.add(new Foods(String.valueOf(lineValue[1].toString()), String.valueOf(lineValue[3].toString()), Integer.valueOf(lineValue[4].toString())));
+        
             imp.add(new SurvivalKit(String.valueOf(lineValue[1].toString()), String.valueOf(lineValue[3].toString()), Integer.valueOf(lineValue[4].toString())));
         }
         inputStream.close();
